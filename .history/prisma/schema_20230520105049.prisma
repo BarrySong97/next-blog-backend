@@ -1,0 +1,51 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  // previewFeatures = []
+}
+
+generator dbml {
+  provider = "prisma-dbml-generator"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  email     String   @unique
+  lastname  String?
+  googleId  String?
+  firstname String?
+  avatar    String?
+  habits    Habit[]
+  role      Role
+}
+
+model Habit {
+  id        String       @id @default(cuid())
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  order     Int
+  name      String       @unique
+  user      User?        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String?
+  dates     HabitDates[] // 定义关联
+}
+
+model HabitDates {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  date      DateTime
+  habitId   String // 定义关联
+  habit     Habit    @relation(fields: [habitId], references: [id], onDelete: Cascade) // 定义关联
+}
+
+enum Role {
+  ADMIN
+  USER
+}
