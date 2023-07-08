@@ -12,13 +12,89 @@ generator dbml {
   provider = "prisma-dbml-generator"
 }
 
+enum Role {
+  ADMIN
+  USER
+}
+
 model User {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  email     String   @unique
+  id        String    @id @default(cuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  email     String    @unique
   lastname  String?
   googleId  String?
   firstname String?
   avatar    String?
+  role      Role      @default(USER)
+  Post      Post[]
+  Comment   Comment[]
+}
+
+model Post {
+  id         String    @id @default(cuid())
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  title      String
+  content    String
+  published  Boolean   @default(false)
+  author     User      @relation(fields: [authorId], references: [id])
+  authorId   String
+  category   Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  categoryId String?
+  comment    Comment[]
+  projectId  String?   @unique
+  Project    Project[]
+}
+
+model Category {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String
+  Post      Post[]
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  content   String
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  String
+  post      Post     @relation(fields: [postId], references: [id])
+  postId    String
+}
+
+model Photo {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  url       String
+}
+
+model Project {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String
+  url       String
+  image     String
+  content   String
+  postId    String?
+  post      Post?    @relation(fields: [postId], references: [id])
+}
+
+model Setting {
+  id             String   @id @default(cuid())
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  github         String   @default("")
+  githubAvatar   String   @default("")
+  weibo          String   @default("")
+  weiboAvatar    String   @default("")
+  bilibili       String   @default("")
+  bilibiliAvatar String   @default("")
+  twitter        String   @default("")
+  twitterAvatar  String   @default("")
 }

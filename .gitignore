@@ -6,5 +6,6 @@ coverage/
 .DS_Store
 
 prisma/migrations/dev/
+.history
 .env.development
 .env.production

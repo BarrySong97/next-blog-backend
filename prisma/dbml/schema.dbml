@@ -11,4 +11,90 @@ Table User {
   googleId String
   firstname String
   avatar String
+  role Role [not null, default: 'USER']
+  Post Post [not null]
+  Comment Comment [not null]
 }
+
+Table Post {
+  id String [pk]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  title String [not null]
+  content String [not null]
+  published Boolean [not null, default: false]
+  author User [not null]
+  authorId String [not null]
+  category Category
+  categoryId String
+  comment Comment [not null]
+  projectId String [unique]
+  Project Project [not null]
+}
+
+Table Category {
+  id String [pk]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  name String [not null]
+  Post Post [not null]
+}
+
+Table Comment {
+  id String [pk]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  content String [not null]
+  author User [not null]
+  authorId String [not null]
+  post Post [not null]
+  postId String [not null]
+}
+
+Table Photo {
+  id String [pk]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  url String [not null]
+}
+
+Table Project {
+  id String [pk]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  name String [not null]
+  url String [not null]
+  image String [not null]
+  content String [not null]
+  postId String
+  post Post
+}
+
+Table Setting {
+  id String [pk]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  github String [not null, default: '']
+  githubAvatar String [not null, default: '']
+  weibo String [not null, default: '']
+  weiboAvatar String [not null, default: '']
+  bilibili String [not null, default: '']
+  bilibiliAvatar String [not null, default: '']
+  twitter String [not null, default: '']
+  twitterAvatar String [not null, default: '']
+}
+
+Enum Role {
+  ADMIN
+  USER
+}
+
+Ref: Post.authorId > User.id
+
+Ref: Post.categoryId > Category.id [delete: Set Null]
+
+Ref: Comment.authorId > User.id
+
+Ref: Comment.postId > Post.id
+
+Ref: Project.postId > Post.id

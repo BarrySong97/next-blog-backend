@@ -9,6 +9,12 @@ import { LoggerModule } from 'nestjs-pino';
 import { Options } from 'pino-http';
 import * as rfs from 'rotating-file-stream';
 import { DestinationStream } from 'pino';
+import { PostModule } from './post/post.module';
+import { CategoryModule } from './category/category.module';
+import { PhotosModule } from './photos/photos.module';
+import { SettingsModule } from './settings/settings.module';
+import { CommentsModule } from './comments/comments.module';
+import { ProjectsModule } from './projects/projects.module';
 const isDev = process.env.NODE_ENV === 'development';
 export function pinoHttpOption(): Options | DestinationStream {
   if (!isDev) {
@@ -72,6 +78,12 @@ export function pinoHttpOption(): Options | DestinationStream {
       },
     }),
     AuthModule,
+    PostModule,
+    CategoryModule,
+    PhotosModule,
+    SettingsModule,
+    CommentsModule,
+    ProjectsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

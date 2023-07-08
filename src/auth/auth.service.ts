@@ -1,6 +1,6 @@
 import { PrismaService } from 'nestjs-prisma';
 import axios from 'axios';
-import { Prisma, User } from '@prisma/client';
+import { Prisma, Role, User } from '@prisma/client';
 import {
   Injectable,
   ConflictException,
@@ -91,6 +91,7 @@ export class AuthService {
         }
       );
       const profile = profileRes.data;
+      const userLength = await this.prisma.user.count();
       const user = await this.validateUserGoogle(profile.id);
 
       if (!user) {
@@ -99,6 +100,7 @@ export class AuthService {
           firstname: profile.given_name,
           avatar: profile.picture,
           lastname: profile.family_name,
+          role: userLength ? Role.USER : Role.ADMIN,
           googleId: profile.id,
         });
         const token = this.generateTokens({ userId: createUser.id });
