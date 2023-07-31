@@ -9,6 +9,9 @@ export class PostService {
   create(createPostDto: CreatePostDto) {
     return this.prisma.post.create({
       data: createPostDto,
+      include: {
+        category: true,
+      },
     });
   }
 
@@ -17,6 +20,17 @@ export class PostService {
       include: {
         category: true,
       },
+    });
+  }
+  findRecent() {
+    return this.prisma.post.findMany({
+      include: {
+        category: true,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+      take: 3,
     });
   }
 
@@ -33,6 +47,9 @@ export class PostService {
     return this.prisma.post.update({
       where: { id },
       data: updatePostDto,
+      include: {
+        category: true,
+      },
     });
   }
 

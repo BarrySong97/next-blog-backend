@@ -42,6 +42,7 @@ model Post {
   authorId   String
   category   Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
   categoryId String?
+  cover      String?
   comment    Comment[]
   projectId  String?   @unique
   Project    Project[]

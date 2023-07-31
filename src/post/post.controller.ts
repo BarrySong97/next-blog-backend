@@ -13,7 +13,7 @@ import { UpdatePostDto } from './dto/update-post.dto';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { PostDTO } from './dto/post.dto';
 
-@Controller('post')
+@Controller('posts')
 @ApiTags('posts')
 export class PostController {
   constructor(private readonly postService: PostService) {}
@@ -27,7 +27,12 @@ export class PostController {
   @Get()
   @ApiResponse({ type: PostDTO, isArray: true })
   findAll() {
-    return this.postService.findAll();
+    return this.postService.findAll() as unknown as PostDTO[];
+  }
+  @Get('/recent')
+  @ApiResponse({ type: PostDTO, isArray: true })
+  findRecent() {
+    return this.postService.findRecent() as unknown as PostDTO[];
   }
 
   @Get(':id')

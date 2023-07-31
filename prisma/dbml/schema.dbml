@@ -27,6 +27,7 @@ Table Post {
   authorId String [not null]
   category Category
   categoryId String
+  cover String
   comment Comment [not null]
   projectId String [unique]
   Project Project [not null]

@@ -17,6 +17,14 @@ export class PhotosService {
     });
   }
 
+  findRecent() {
+    return this.prisma.photo.findMany({
+      orderBy: {
+        createdAt: 'desc',
+      },
+      take: 6,
+    });
+  }
   create(createPhotoDto: CreatePhotoDto) {
     return this.prisma.photo.create({
       data: createPhotoDto,
