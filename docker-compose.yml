@@ -2,8 +2,9 @@ version: '3.8'
 services:
   nest-api:
     container_name: next-blog-api
-    networks: 
+    networks:
       - breeze_default
+
     build:
       context: .
       dockerfile: Dockerfile
@@ -11,3 +12,6 @@ services:
       - '8090:3000'
     env_file:
       - .env.production
+networks:
+  breeze_default:
+    external: true
