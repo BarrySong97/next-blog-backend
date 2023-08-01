@@ -2,6 +2,8 @@ version: '3.8'
 services:
   nest-api:
     container_name: next-blog-api
+    networks: 
+      breeze_default
     build:
       context: .
       dockerfile: Dockerfile
