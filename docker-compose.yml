@@ -6,6 +6,6 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - '3000:8090'
+      - '8090:3000'
     env_file:
       - .env.production
