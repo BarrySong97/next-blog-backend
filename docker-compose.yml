@@ -3,7 +3,7 @@ services:
   nest-api:
     container_name: next-blog-api
     networks: 
-      breeze_default
+      - breeze_default
     build:
       context: .
       dockerfile: Dockerfile
