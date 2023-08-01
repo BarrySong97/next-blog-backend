@@ -25,5 +25,5 @@ COPY --from=builder /app/scripts ./scripts
 COPY --from=builder /app/logs ./logs
 
 VOLUME "/app/logs"
-EXPOSE 3000
+EXPOSE 8090
 CMD ["/bin/sh", "-c", "npm run migrate:deploy && npm run start:prod"]

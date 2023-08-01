@@ -1,30 +1,11 @@
 version: '3.8'
 services:
   nest-api:
-    container_name: nest-api
+    container_name: next-blog-api
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - '3000:3000'
-    depends_on:
-      - postgres
+      - '3000:8090'
     env_file:
       - .env.production
-    volumes:
-      - ~/breeze-nest/logs:/app/logs
-
-  postgres:
-    image: postgres:13
-    container_name: nest-postgres
-    restart: always
-    ports:
-      - '5432:5432'
-    env_file:
-      - .env.production
-    volumes:
-      - postgres:/var/lib/postgresql/data
-
-volumes:
-  postgres:
-    name: nest-db
