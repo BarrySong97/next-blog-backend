@@ -6,12 +6,14 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { PhotosService } from './photos.service';
 import { CreatePhotoDto } from './dto/create-photo.dto';
 import { UpdatePhotoDto } from './dto/update-photo.dto';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { PhotoDTO } from './dto/photo.dto';
+import { JwtGuard } from 'src/auth/jwt.guard';
 
 @Controller('photos')
 @ApiTags('photos')
@@ -20,6 +22,7 @@ export class PhotosController {
 
   @Post()
   @ApiResponse({ type: PhotoDTO })
+  @UseGuards(JwtGuard)
   create(@Body() createPhotoDto: CreatePhotoDto) {
     return this.photosService.create(createPhotoDto);
   }
@@ -36,6 +39,7 @@ export class PhotosController {
   }
 
   @Delete('/batch')
+  @UseGuards(JwtGuard)
   async deleteBatch(@Body() ids: string[]) {
     return this.photosService.deleteBatch(ids) as any as { count: number };
   }
@@ -48,6 +52,7 @@ export class PhotosController {
 
   @Patch(':id')
   @ApiResponse({ type: PhotoDTO })
+  @UseGuards(JwtGuard)
   update(@Param('id') id: string, @Body() updatePhotoDto: UpdatePhotoDto) {
     return this.photosService.update(id, updatePhotoDto);
   }

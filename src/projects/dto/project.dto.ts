@@ -6,5 +6,6 @@ export class ProjectDTO extends CommonDTO {
   url: string;
   image: string;
   content: string;
+  github: string;
   post: PostDTO;
 }

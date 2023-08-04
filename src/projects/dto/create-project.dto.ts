@@ -3,4 +3,6 @@ export class CreateProjectDto {
   url: string;
   image: string;
   content: string;
+  githubUrl: string;
+  postId: string;
 }

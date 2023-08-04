@@ -67,6 +67,7 @@ Table Project {
   url String [not null]
   image String [not null]
   content String [not null]
+  github String
   postId String
   post Post
 }

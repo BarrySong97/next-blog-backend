@@ -6,12 +6,14 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { PostService } from './post.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { PostDTO } from './dto/post.dto';
+import { JwtGuard } from 'src/auth/jwt.guard';
 
 @Controller('posts')
 @ApiTags('posts')
@@ -20,6 +22,7 @@ export class PostController {
 
   @Post()
   @ApiResponse({ type: PostDTO })
+  @UseGuards(JwtGuard)
   create(@Body() createPostDto: CreatePostDto) {
     return this.postService.create(createPostDto);
   }
@@ -43,12 +46,14 @@ export class PostController {
 
   @Patch(':id')
   @ApiResponse({ type: PostDTO })
+  @UseGuards(JwtGuard)
   update(@Param('id') id: string, @Body() updatePostDto: UpdatePostDto) {
     return this.postService.update(id, updatePostDto);
   }
 
   @Delete(':id')
   @ApiResponse({ type: PostDTO })
+  @UseGuards(JwtGuard)
   remove(@Param('id') id: string) {
     return this.postService.remove(id);
   }

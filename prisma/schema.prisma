@@ -82,6 +82,7 @@ model Project {
   url       String
   image     String
   content   String
+  github    String?
   postId    String?
   post      Post?    @relation(fields: [postId], references: [id])
 }
