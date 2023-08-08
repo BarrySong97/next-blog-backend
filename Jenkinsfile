@@ -9,7 +9,7 @@ pipeline {
 
         stage('build & deploy') {
             steps {
-                sh 'docker-compose up --build -d'
+                sh 'docker-compose up --build -d --rmi '
             }
         }
     }

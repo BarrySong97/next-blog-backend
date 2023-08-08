@@ -22,6 +22,8 @@ Table Post {
   updatedAt DateTime [not null]
   title String [not null]
   content String [not null]
+  html String [not null, default: '']
+  toc String [not null, default: '']
   published Boolean [not null, default: false]
   author User [not null]
   authorId String [not null]

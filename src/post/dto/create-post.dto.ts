@@ -6,4 +6,6 @@ export class CreatePostDto {
   authorId: string;
   categoryId: string;
   cover?: string;
+  html: string;
+  toc: string;
 }

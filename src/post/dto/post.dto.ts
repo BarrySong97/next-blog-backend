@@ -8,6 +8,8 @@ export class PostDTO extends CommonDTO {
   authorId: string;
   categoryId: string;
   cover: string;
+  html: string;
+  toc: string;
   @ApiProperty({ type: CategoryDTO })
   category: CategoryDTO;
 }

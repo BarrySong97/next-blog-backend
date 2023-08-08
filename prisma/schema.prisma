@@ -37,6 +37,8 @@ model Post {
   updatedAt  DateTime  @updatedAt
   title      String
   content    String
+  html       String    @default("")
+  toc        String    @default("")
   published  Boolean   @default(false)
   author     User      @relation(fields: [authorId], references: [id])
   authorId   String
