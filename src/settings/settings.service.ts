@@ -12,6 +12,15 @@ export class SettingsService {
     });
   }
 
+  async addPhotoLayout(layout: string) {
+    const first = await this.prisma.setting.findFirst();
+    first.photoLayout = layout;
+    return this.prisma.setting.update({
+      where: { id: first.id },
+      data: first,
+    });
+  }
+
   findAll() {
     return this.prisma.setting.findFirst();
   }

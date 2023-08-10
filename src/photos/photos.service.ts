@@ -22,7 +22,7 @@ export class PhotosService {
       orderBy: {
         createdAt: 'desc',
       },
-      take: 6,
+      take: 9,
     });
   }
   create(createPhotoDto: CreatePhotoDto) {
@@ -32,7 +32,11 @@ export class PhotosService {
   }
 
   findAll() {
-    return this.prisma.photo.findMany();
+    return this.prisma.photo.findMany({
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
   }
 
   findOne(id: string) {

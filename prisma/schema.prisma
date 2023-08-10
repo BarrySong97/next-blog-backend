@@ -101,4 +101,5 @@ model Setting {
   bilibiliAvatar String   @default("")
   twitter        String   @default("")
   twitterAvatar  String   @default("")
+  photoLayout    String   @default("")
 }

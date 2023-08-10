@@ -86,6 +86,7 @@ Table Setting {
   bilibiliAvatar String [not null, default: '']
   twitter String [not null, default: '']
   twitterAvatar String [not null, default: '']
+  photoLayout String [not null, default: '']
 }
 
 Enum Role {

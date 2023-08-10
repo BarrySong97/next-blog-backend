@@ -20,6 +20,9 @@ export class PostService {
       include: {
         category: true,
       },
+      orderBy: {
+        updatedAt: 'desc',
+      },
     });
   }
   findRecent() {
@@ -28,7 +31,7 @@ export class PostService {
         category: true,
       },
       orderBy: {
-        createdAt: 'desc',
+        updatedAt: 'desc',
       },
       take: 3,
     });

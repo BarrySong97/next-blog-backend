@@ -11,8 +11,8 @@ import {
 import { SettingsService } from './settings.service';
 import { CreateSettingDto } from './dto/create-setting.dto';
 import { UpdateSettingDto } from './dto/update-setting.dto';
-import { ApiTags } from '@nestjs/swagger';
-import { SettingDto } from './dto/setting.dto';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { Layout, SettingDto } from './dto/setting.dto';
 import { JwtGuard } from 'src/auth/jwt.guard';
 
 @Controller('settings')
@@ -24,6 +24,15 @@ export class SettingsController {
   @UseGuards(JwtGuard)
   create(@Body() createSettingDto: CreateSettingDto) {
     return this.settingsService.create(createSettingDto) as any as SettingDto;
+  }
+
+  @Post('/photo')
+  @ApiBody({ type: Layout, isArray: true })
+  @UseGuards(JwtGuard)
+  addPhotoLayout(@Body() layout: Layout[]) {
+    return this.settingsService.addPhotoLayout(
+      JSON.stringify(layout)
+    ) as any as SettingDto;
   }
 
   @Get()
