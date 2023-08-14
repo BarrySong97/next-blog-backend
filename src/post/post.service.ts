@@ -1,3 +1,4 @@
+import * as readingTime from 'reading-time';
 import { Injectable } from '@nestjs/common';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
@@ -7,8 +8,9 @@ import { PrismaService } from 'nestjs-prisma';
 export class PostService {
   constructor(private readonly prisma: PrismaService) {}
   create(createPostDto: CreatePostDto) {
+    const stats = (readingTime as any)(createPostDto.content);
     return this.prisma.post.create({
-      data: createPostDto,
+      data: { ...createPostDto, readingTime: stats.minutes.toFixed(0) },
       include: {
         category: true,
       },
@@ -47,9 +49,11 @@ export class PostService {
   }
 
   update(id: string, updatePostDto: UpdatePostDto) {
+    const stats = (readingTime as any)(updatePostDto.content);
+    delete updatePostDto.updatedAt;
     return this.prisma.post.update({
       where: { id },
-      data: updatePostDto,
+      data: { ...updatePostDto, readingTime: stats.minutes.toFixed(0) },
       include: {
         category: true,
       },

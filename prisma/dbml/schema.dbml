@@ -29,6 +29,7 @@ Table Post {
   authorId String [not null]
   category Category
   categoryId String
+  readingTime String [not null, default: '']
   cover String
   comment Comment [not null]
   projectId String [unique]

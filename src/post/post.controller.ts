@@ -41,7 +41,6 @@ export class PostController {
   @Get(':id')
   @ApiResponse({ type: PostDTO })
   findOne(@Param('id') id: string) {
-    
     return this.postService.findOne(id) as unknown as PostDTO;
   }
 

@@ -10,6 +10,7 @@ export class PostDTO extends CommonDTO {
   cover: string;
   html: string;
   toc: string;
+  readingTime: string;
   @ApiProperty({ type: CategoryDTO })
   category: CategoryDTO;
 }
