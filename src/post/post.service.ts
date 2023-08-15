@@ -23,7 +23,7 @@ export class PostService {
         category: true,
       },
       orderBy: {
-        updatedAt: 'desc',
+        createdAt: 'desc',
       },
     });
   }
