@@ -17,10 +17,16 @@ export class PostService {
     });
   }
 
-  findAll() {
+  findAll(search?: string) {
     return this.prisma.post.findMany({
       include: {
         category: true,
+      },
+      where: {
+        content: {
+          contains: search,
+          mode: 'insensitive',
+        },
       },
       orderBy: {
         createdAt: 'desc',

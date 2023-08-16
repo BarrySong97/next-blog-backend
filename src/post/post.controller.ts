@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 import { PostService } from './post.service';
 import { CreatePostDto } from './dto/create-post.dto';
@@ -29,9 +30,10 @@ export class PostController {
 
   @Get()
   @ApiResponse({ type: PostDTO, isArray: true })
-  findAll() {
-    return this.postService.findAll() as unknown as PostDTO[];
+  findAll(@Query('search') search: string) {
+    return this.postService.findAll(search) as unknown as PostDTO[];
   }
+
   @Get('/recent')
   @ApiResponse({ type: PostDTO, isArray: true })
   findRecent() {

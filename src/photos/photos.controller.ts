@@ -26,6 +26,7 @@ export class PhotosController {
   create(@Body() createPhotoDto: CreatePhotoDto) {
     return this.photosService.create(createPhotoDto);
   }
+
   @Get('/recent')
   @ApiResponse({ type: PhotoDTO, isArray: true })
   findRecent() {

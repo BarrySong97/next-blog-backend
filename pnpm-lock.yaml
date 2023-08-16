@@ -49,7 +49,7 @@ specifiers:
   pino-multi-stream: ^6.0.0
   pino-pretty: ^10.0.0
   prettier: 2.8.4
-  prisma: 4.11.0
+  prisma: 4.14.1
   prisma-dbml-generator: 0.10.0-dev.0
   reading-time: ^1.5.0
   reflect-metadata: 0.1.13
@@ -75,7 +75,7 @@ dependencies:
   '@nestjs/passport': 9.0.3_u2xhnlcurtry4jc4evpqpb4ipa
   '@nestjs/platform-express': 9.3.10_7ftkheainf6elxr73aabueoaxm
   '@nestjs/swagger': 6.2.1_yviktkwurjbb7qoqmrz274lpj4
-  '@prisma/client': 4.14.1_prisma@4.11.0
+  '@prisma/client': 4.14.1_prisma@4.14.1
   '@types/multer': 1.4.7
   axios: 1.4.0
   bcrypt: 5.1.0
@@ -89,7 +89,7 @@ dependencies:
   graphql-scalars: 1.20.1_graphql@16.6.0
   graphql-subscriptions: 2.0.0_graphql@16.6.0
   nestjs-pino: 3.2.0_vmzjs5hhp5bkg5mkgizmqrpmse
-  nestjs-prisma: 0.20.0_xgmd4tmkqfcphwr2tl4bwlsfka
+  nestjs-prisma: 0.20.0_bnm22noil4l7a6viuyedik5psq
   passport: 0.6.0
   passport-google-oauth20: 2.0.0
   passport-jwt: 4.0.1
@@ -124,7 +124,7 @@ devDependencies:
   eslint-plugin-prettier: 4.2.1_eqzx3hpkgx5nnvxls3azrcc7dm
   jest: 29.5.0_daglcptrsglylliibnnp676h3i
   prettier: 2.8.4
-  prisma: 4.11.0
+  prisma: 4.14.1
   prisma-dbml-generator: 0.10.0-dev.0
   supertest: 6.3.3
   ts-jest: 29.0.5_doipufordlnvh5g4adbwayvyvy
@@ -630,7 +630,7 @@ packages:
     peerDependencies:
       '@prisma/client': ^2.0.0 || ^3.0.0 || ^4.0.0
     dependencies:
-      '@prisma/client': 4.14.1_prisma@4.11.0
+      '@prisma/client': 4.14.1_prisma@4.14.1
       graphql-fields: 2.0.3
     dev: false
 
@@ -1266,7 +1266,7 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /@prisma/client/4.14.1_prisma@4.11.0:
+  /@prisma/client/4.14.1_prisma@4.14.1:
     resolution: {integrity: sha512-TZIswkeX1ccsHG/eN2kICzg/csXll0osK3EHu1QKd8VJ3XLcXozbNELKkCNfsCUvKJAwPdDtFCzF+O+raIVldw==}
     engines: {node: '>=14.17'}
     requiresBuild: true
@@ -1277,7 +1277,7 @@ packages:
         optional: true
     dependencies:
       '@prisma/engines-version': 4.14.0-67.d9a4c5988f480fa576d43970d5a23641aa77bc9c
-      prisma: 4.11.0
+      prisma: 4.14.1
     dev: false
 
   /@prisma/debug/3.15.2:
@@ -1328,8 +1328,8 @@ packages:
     requiresBuild: true
     dev: true
 
-  /@prisma/engines/4.11.0:
-    resolution: {integrity: sha512-0AEBi2HXGV02cf6ASsBPhfsVIbVSDC9nbQed4iiY5eHttW9ZtMxHThuKZE1pnESbr8HRdgmFSa/Kn4OSNYuibg==}
+  /@prisma/engines/4.14.1:
+    resolution: {integrity: sha512-APqFddPVHYmWNKqc+5J5SqrLFfOghKOLZxobmguDUacxOwdEutLsbXPVhNnpFDmuQWQFbXmrTTPoRrrF6B1MWA==}
     requiresBuild: true
 
   /@prisma/fetch-engine/3.16.0-49.da41d2bb3406da22087b849f0e911199ba4fbf11:
@@ -5046,7 +5046,7 @@ packages:
       pino-http: 8.3.3
     dev: false
 
-  /nestjs-prisma/0.20.0_xgmd4tmkqfcphwr2tl4bwlsfka:
+  /nestjs-prisma/0.20.0_bnm22noil4l7a6viuyedik5psq:
     resolution: {integrity: sha512-tqOcoJQh4U8Y7akyCwluo1VFqhqjqYy8JAYYfrKRhvZ7N4trt3wYXXllRGH3LeLaom09QchHP9WEo/BAV9JMjg==}
     peerDependencies:
       '@nestjs/common': ^7.0.0 || ^8.0.0 || ^9.0.0
@@ -5056,9 +5056,9 @@ packages:
       '@angular-devkit/core': 13.3.11
       '@angular-devkit/schematics': 13.3.11
       '@nestjs/common': 9.3.10_ufuujcqbszwis444rmt5m3dshy
-      '@prisma/client': 4.14.1_prisma@4.11.0
+      '@prisma/client': 4.14.1_prisma@4.14.1
       '@schematics/angular': 13.3.11
-      prisma: 4.11.0
+      prisma: 4.14.1
     transitivePeerDependencies:
       - chokidar
     dev: false
@@ -5566,13 +5566,13 @@ packages:
       - supports-color
     dev: true
 
-  /prisma/4.11.0:
-    resolution: {integrity: sha512-4zZmBXssPUEiX+GeL0MUq/Yyie4ltiKmGu7jCJFnYMamNrrulTBc+D+QwAQSJ01tyzeGHlD13kOnqPwRipnlNw==}
+  /prisma/4.14.1:
+    resolution: {integrity: sha512-z6hxzTMYqT9SIKlzD08dhzsLUpxjFKKsLpp5/kBDnSqiOjtUyyl/dC5tzxLcOa3jkEHQ8+RpB/fE3w8bgNP51g==}
     engines: {node: '>=14.17'}
     hasBin: true
     requiresBuild: true
     dependencies:
-      '@prisma/engines': 4.11.0
+      '@prisma/engines': 4.14.1
 
   /process-nextick-args/2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
