@@ -59,10 +59,12 @@ export class AuthService {
     });
   }
 
-  async googleLogin(code: string): Promise<Auth> {
+  async googleLogin(code: string, client: string): Promise<Auth> {
     const clientId = this.configService.get('GOOGLE_CLIENT_ID');
     const clientSecret = this.configService.get('GOOGLE_CLIENT_SECRET');
-    const redirectUri = this.configService.get('GOOGLE_CALLBACK_URL');
+    const redirectUri = this.configService.get(
+      client === 'front' ? 'FRONT_GOOGLE_CALLBACK_URL' : 'GOOGLE_CALLBACK_URL'
+    );
 
     try {
       const response = await axios.post(

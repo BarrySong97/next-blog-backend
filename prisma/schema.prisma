@@ -69,6 +69,14 @@ model Comment {
   authorId  String
   post      Post     @relation(fields: [postId], references: [id])
   postId    String
+
+  parentId String?
+  parent   Comment?  @relation("ChildrenComments", fields: [parentId], references: [id], onDelete: Cascade)
+  children Comment[] @relation("ChildrenComments")
+
+  replyToId String?
+  replyTo   Comment?  @relation("ReplyComments", fields: [replyToId], references: [id])
+  replies   Comment[] @relation("ReplyComments")
 }
 
 model Photo {

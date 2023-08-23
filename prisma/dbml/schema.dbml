@@ -53,6 +53,12 @@ Table Comment {
   authorId String [not null]
   post Post [not null]
   postId String [not null]
+  parentId String
+  parent Comment
+  children Comment [not null]
+  replyToId String
+  replyTo Comment
+  replies Comment [not null]
 }
 
 Table Photo {
@@ -102,5 +108,9 @@ Ref: Post.categoryId > Category.id [delete: Set Null]
 Ref: Comment.authorId > User.id
 
 Ref: Comment.postId > Post.id
+
+Ref: Comment.parentId - Comment.id [delete: Cascade]
+
+Ref: Comment.replyToId - Comment.id [delete: Cascade]
 
 Ref: Project.postId > Post.id

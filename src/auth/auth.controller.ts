@@ -13,8 +13,11 @@ export class AuthController {
 
   @Post('/google')
   @ApiResponse({ type: Auth })
-  async googleLogin(@Query('code') code: string): Promise<Auth> {
-    return this.auth.googleLogin(code);
+  async googleLogin(
+    @Query('code') code: string,
+    @Query('client') client: string
+  ): Promise<Auth> {
+    return this.auth.googleLogin(code, client);
   }
   @UseGuards(JwtGuard)
   @Get('/me')
