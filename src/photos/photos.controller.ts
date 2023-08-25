@@ -14,6 +14,7 @@ import { UpdatePhotoDto } from './dto/update-photo.dto';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { PhotoDTO } from './dto/photo.dto';
 import { JwtGuard } from 'src/auth/jwt.guard';
+import { TagDTO } from './dto/tas.dto';
 
 @Controller('photos')
 @ApiTags('photos')
@@ -31,6 +32,12 @@ export class PhotosController {
   @ApiResponse({ type: PhotoDTO, isArray: true })
   findRecent() {
     return this.photosService.findRecent() as unknown as PhotoDTO[];
+  }
+
+  @Get('/tags')
+  @ApiResponse({ type: TagDTO, isArray: true })
+  getAllTags() {
+    return this.photosService.getAllTags() as unknown as TagDTO[];
   }
 
   @Get()

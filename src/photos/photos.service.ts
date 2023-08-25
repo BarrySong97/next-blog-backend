@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreatePhotoDto } from './dto/create-photo.dto';
 import { UpdatePhotoDto } from './dto/update-photo.dto';
 import { PrismaService } from 'nestjs-prisma';
+import { PhotoTag } from '@prisma/client';
 
 @Injectable()
 export class PhotosService {
@@ -17,6 +18,9 @@ export class PhotosService {
     });
   }
 
+  getAllTags() {
+    return this.prisma.photoTag.findMany();
+  }
   findRecent() {
     return this.prisma.photo.findMany({
       orderBy: {
@@ -25,10 +29,30 @@ export class PhotosService {
       take: 9,
     });
   }
-  create(createPhotoDto: CreatePhotoDto) {
-    return this.prisma.photo.create({
-      data: createPhotoDto,
-    });
+  async create(createPhotoDto: CreatePhotoDto) {
+    const { tags } = createPhotoDto;
+    const [, photo] = await this.prisma.$transaction([
+      this.prisma.photoTag.createMany({
+        data: tags.map((name) => ({
+          name,
+        })),
+        skipDuplicates: true, // 跳过重复
+      }),
+      this.prisma.photo.create({
+        data: {
+          ...createPhotoDto,
+          PhotoTags: {
+            connect: tags.map((tag) => ({
+              name: tag,
+            })),
+          },
+        },
+        include: {
+          PhotoTags: true,
+        },
+      }),
+    ]);
+    return photo;
   }
 
   findAll() {
